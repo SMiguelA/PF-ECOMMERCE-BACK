@@ -21,6 +21,10 @@ const UserSchema = mongoose.Schema(
       },
     },
 
+    profilePicture: {
+      type: String,
+    },
+
     password: {
       type: String,
       required: [true, "is required"],
@@ -38,6 +42,14 @@ const UserSchema = mongoose.Schema(
         count: 0,
       },
     },
+    // followers: {
+    //   type: Array,
+    //   default: [],
+    // },
+    // followings: {
+    //   type: Array,
+    //   default: [],
+    // },
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
   },
   { minimize: false }

@@ -9,6 +9,9 @@ const signupHandlerUsers = require("./handlers/signupHandlerUsers");
 const loginHandlerUsers = require("./handlers/loginHandlerUsers");
 const getIdOrdersHandlerUsers = require("./handlers/getIdOrdersHandlerUsers");
 const checkGoogleEmailHandler = require("./handlers/loginGoogle");
+
+const User = require("../../db/models/User");
+
 const api = Router();
 
 /**
@@ -57,5 +60,25 @@ api.post("/login", loginHandlerUsers);
 
 //Ruta de Google
 api.post("/check-google-email", checkGoogleEmailHandler);
+
+// //get friends
+// api.get("/friends/:userId", async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.userId);
+//     const friends = await Promise.all(
+//       user.followings.map((friendId) => {
+//         return User.findById(friendId);
+//       })
+//     );
+//     let friendList = [];
+//     friends.map((friend) => {
+//       const { _id, name, profilePicture } = friend;
+//       friendList.push({ _id, name, profilePicture });
+//     });
+//     res.status(200).json(friendList);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = api;
